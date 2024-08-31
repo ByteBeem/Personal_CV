@@ -75,14 +75,8 @@ const Home = ({ showSidebar, active, closeSidebar }) => {
           </Link>
         </div>
 
-        <div className="highlights">
+  
           
-         
-          <div className="highlight">
-            <h3>Contact</h3>
-            <p>Let's connect and discuss potential collaborations or opportunities.</p>
-          </div>
-        </div>
 
         <div className="social-media">
           <h3>Follow Me</h3>
