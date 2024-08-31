@@ -50,8 +50,9 @@
   
   
     .loading-spinner {
-      font-size: 2em;
-      color: #ffffff;
+      font-size: 3rem;
+      color: #007bff;
+      animation: spin 1s linear infinite;
     }
   
     .profile_container {

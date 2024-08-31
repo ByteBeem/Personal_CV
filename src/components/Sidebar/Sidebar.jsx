@@ -32,7 +32,7 @@ const Sidebar = ({ active, closeSidebar }) => {
         </div>
       )}
       <div className="top">
-        <h3>owner's name</h3>
+        <h3>Donald Mxolisi</h3>
         <div className="close_btn">&times;</div>
       </div>
 

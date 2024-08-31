@@ -6,8 +6,7 @@ import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import UserProfile from "../../assets/user.jpeg";
 import Error from "../ErrorModal/ErrorModal";
-import { Link } from "react-router-dom";
-import { FiLoader } from "react-icons/fi";
+import { FaSpinner } from "react-icons/fa";
 
 
 
@@ -19,6 +18,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
   const name = userData.name;
   const surname = userData.surname;
+  const Email = userData.email;
 
 
   useEffect(() => {
@@ -27,37 +27,34 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
   }, []);
 
-
-
-  const fetchUserData = () => {
+  const fetchUserData = async() => {
     setLoading(true);
-    axios
-      .get("https://profitpilot.ddns.net/users/spinz4bets/getUserData", {
-        headers: {
-          
-        }
-      })
-      .then((response) => {
+    try{
 
+      const response =  await axios.get('https://profitpilot.ddns.net/Data/v1/details',{
+
+      })
+
+      if(response.status === 200){
         setUserData(response.data);
-      
+      }
 
-
-      })
-      .catch((error) => {
-
-
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    }catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        setErrorMessage(error.response.data.error);
+      } else {
+        setErrorMessage("Failed to fetch data. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="profile">
       {loading && (
         <div className="overlay">
-          <FiLoader className="loading-spinner" />
+          <FaSpinner className="loading-spinner" />
         </div>
       )}
       <Sidebar active={active} closeSidebar={closeSidebar} />
@@ -78,17 +75,21 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
               <span>Surname:</span>
               <div className="text_item">{surname}</div>
-
-              <Link className="form_btn" to="/Refer">
-                Referral
-              </Link>
-
+              <span>Email:</span>
+              <div className="text_item">{Email}</div>
             
             </div>
+
+            
+          </div>
+          
+      </div>
+      
+      <div className="highlight">
+            <h3>About me</h3>
+            <p>{userData.about}</p>
           </div>
         </div>
-
-      </div>
       {errorModalOpen && <Error errorMessage={errorMessage} isOpen={errorModalOpen} onClose={() => setErrorModalOpen(false)} />}
 
     </div>

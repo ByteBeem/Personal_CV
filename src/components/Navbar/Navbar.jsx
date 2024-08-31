@@ -3,12 +3,11 @@ import axios from "axios";
 import Error from "../../Pages/ErrorModal/ErrorModal";
 import "./Navbar.scss";
 import { FaCircleInfo } from "react-icons/fa6";
-import InfoModal from "../../components/../Pages/InfoModal/InfoModal"; 
+import InfoModal from "../../Pages/InfoModal/InfoModal"; 
 
 const Navbar = ({ showSidebar }) => {
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(false);
-  const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [infoModalOpen, setInfoModalOpen] = useState(false);  
@@ -19,29 +18,27 @@ const Navbar = ({ showSidebar }) => {
     
   }, []);
 
-  const fetchUserData = () => {
+  const fetchUserData = async() => {
     setLoading(true);
-    axios
-      .get('https://profitpilot.ddns.net/users/spinz4bets/balance', {
-        headers: {
-       
-        }
+    try{
+
+      const response =  await axios.get('https://profitpilot.ddns.net/Data/v1/details',{
+
       })
-      .then((response) => {
-        const balance = response.data;
-        if (balance !== undefined) {
-          setUserData(balance);
-          const code  = balance.acc;
-          localStorage.setItem("ReferralCode" ,code );
-        }
-      })
-      .catch((error) => {
-        setErrorMessage(`${error.message} ,  Check Your internet connection`);
-        
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+
+      if(response.status === 200){
+        setUserData(response.data);
+      }
+
+    }catch (error) {
+      if (error.response && error.response.data && error.response.data.error) {
+        setErrorMessage(error.response.data.error);
+      } else {
+        setErrorMessage("Failed to fetch data. Please try again.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
 
@@ -70,7 +67,7 @@ const Navbar = ({ showSidebar }) => {
       
       
       {errorModalOpen && <Error errorMessage={errorMessage} isOpen={errorModalOpen} onClose={() => setErrorModalOpen(false)} />}
-      {infoModalOpen && <InfoModal isOpen={infoModalOpen} userName={'Donald Mxolisi'} onClose={() => setInfoModalOpen(false)} />}
+      {infoModalOpen && <InfoModal isOpen={infoModalOpen} userName={userData.name} onClose={() => setInfoModalOpen(false)} />}
     </>
   );
 };

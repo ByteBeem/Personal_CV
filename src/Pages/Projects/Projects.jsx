@@ -31,7 +31,7 @@ const Projects = ({ showSidebar, active, closeSidebar }) => {
         // Add more projects as needed
       ]);
       setLoading(false);
-    }, 1000); // Simulating 1 second delay for the API call
+    }, 1000); 
   }, []);
 
   return (

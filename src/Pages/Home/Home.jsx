@@ -63,7 +63,7 @@ const Home = ({ showSidebar, active, closeSidebar }) => {
 
         <div className="hero">
           <img src={user} alt="User" className="user-image" />
-          <h1>Hi, I'm [Your Name]</h1>
+          <h1>Hi, I'm Donald Mxolisi </h1>
           <span ref={el} />
           <p>Welcome to my personal space where I share my projects and passions.</p>
           <Link
