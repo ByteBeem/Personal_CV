@@ -4,7 +4,7 @@ import "../../App.scss";
 import axios from "axios";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
-import UserProfile from "../../assets/user.jpeg";
+import UserProfile from "../../assets/user.jpg";
 import Error from "../ErrorModal/ErrorModal";
 import { FaSpinner } from "react-icons/fa";
 
@@ -92,8 +92,7 @@ function Profile({ showSidebar, active, closeSidebar }) {
 
               <span>Surname:</span>
               <div className="text_item">{surname}</div>
-              <span>Email:</span>
-              <div className="text_item">{Email}</div>
+              
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import { FaCode, FaServer, FaDatabase, FaTools, FaReact, FaSass } from "react-ic
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Error from "../ErrorModal/ErrorModal";
-import SkillDetailsModal from "../SkillDetailsModal/SkillDetailsModal"; // Import the modal component
+import SkillDetailsModal from "../SkillDetailsModal/SkillDetailsModal"; 
 import axios from "axios";
 import "./Skills.scss";
 import "../../App.scss";
@@ -13,8 +13,8 @@ const Skills = ({ showSidebar, active, closeSidebar }) => {
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [data, setData] = useState([]);
-  const [selectedSkill, setSelectedSkill] = useState(null); // State to track the selected skill
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
+  const [selectedSkill, setSelectedSkill] = useState(null); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   useEffect(() => {
     fetchSkills();

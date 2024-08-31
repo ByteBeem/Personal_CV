@@ -6,8 +6,9 @@ import "./Home.scss";
 import { FiLoader } from "react-icons/fi";
 import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
 import Typed from 'typed.js';
-import user from "../../assets/user.jpeg";
+import user from "../../assets/user.jpg";
 import { Link } from "react-router-dom";
+
 
 const Home = ({ showSidebar, active, closeSidebar }) => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -63,7 +64,7 @@ const Home = ({ showSidebar, active, closeSidebar }) => {
 
         <div className="hero">
           <img src={user} alt="User" className="user-image" />
-          <h1>Hi, I'm Donald </h1>
+          <h1>Hi, I'm Bruce </h1>
           <span ref={el} />
           <p>Welcome to my personal space where I share my projects and passions.</p>
           <Link
@@ -75,8 +76,6 @@ const Home = ({ showSidebar, active, closeSidebar }) => {
           </Link>
         </div>
 
-  
-          
 
         <div className="social-media">
           <h3>Follow Me</h3>
