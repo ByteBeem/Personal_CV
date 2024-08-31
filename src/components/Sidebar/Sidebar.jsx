@@ -46,36 +46,33 @@ const Sidebar = ({ active, closeSidebar }) => {
           <span>Home</span>
         </Link>
 
-       
 
-          <Link
-            onClick={() => setActiveItem("Skills")}
-            className={activeItem === "Skills" ? "link active" : "link"}
-            to="/Skills"
-          >
-            <GiSkills className="icon" />
-            <span>Skills</span>
-          </Link>
 
-          <Link
-           
-            onClick={() => setActiveItem("Projects")}
-            className={activeItem === "Projects" ? "link active" : "link"}
-            to="/Projects"
-          >
-            <GrProjects className="icon" />
-            <span>Projects</span>
+        <Link
+          onClick={() => setActiveItem("Skills")}
+          className={activeItem === "Skills" ? "link active" : "link"}
+          to="/Skills"
+        >
+          <GiSkills className="icon" />
+          <span>Skills</span>
+        </Link>
+
+        <Link
+
+          onClick={() => setActiveItem("Projects")}
+          className={activeItem === "Projects" ? "link active" : "link"}
+          to="/Projects"
+        >
+          <GrProjects className="icon" />
+          <span>Projects</span>
+        </Link>
+
+
+          <Link className="link" to="/profile">
+            <FaUser className="icon" />
+            <span>Profile</span>
           </Link>
         
-
-        
-{token &&
-
-<Link className="link" to="/profile">
-  <FaUser className="icon" />
-  <span>Profile</span>
-</Link>
-}
       </div>
     </aside>
   );

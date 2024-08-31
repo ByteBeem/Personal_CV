@@ -12,16 +12,7 @@ const InfoModal = ({ isOpen, onClose, userName }) => {
           <button className="close-btn" onClick={onClose}>&times;</button>
         </div>
         <div className="info-modal-content">
-          <h3>Ownership and Copyright</h3>
-          <p>
-            This website is owned and operated by {userName}. All content, including text, images, and design, is protected by copyright law. Unauthorized copying, distribution, or reproduction of any content is strictly prohibited and may result in legal action.
-          </p>
-
-          <h3>Personal Information</h3>
-          <p>
-            The information provided on this site is intended solely for the purpose of sharing {userName}'s professional background and personal achievements. Any misuse of this information is prohibited.
-          </p>
-          
+         
           <h3>Security</h3>
           <p>
             We take the privacy and security of your information seriously. Any personal information shared via this website is protected with industry-standard security measures.

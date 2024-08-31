@@ -10,6 +10,7 @@
     align-items: center;
     opacity: 1;
     transition: opacity 0.5s;
+    z-index: 1000;
   }
   
   .logo-container.hide {
