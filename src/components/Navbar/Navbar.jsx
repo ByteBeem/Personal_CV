@@ -33,8 +33,10 @@ const Navbar = ({ showSidebar }) => {
     }catch (error) {
       if (error.response && error.response.data && error.response.data.error) {
         setErrorMessage(error.response.data.error);
+        setErrorModalOpen(true);
       } else {
         setErrorMessage("Failed to fetch data. Please try again.");
+        setErrorModalOpen(true);
       }
     } finally {
       setLoading(false);
