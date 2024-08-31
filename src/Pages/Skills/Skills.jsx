@@ -3,6 +3,7 @@ import { FaCode, FaServer, FaDatabase, FaTools, FaReact, FaSass } from "react-ic
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import Error from "../ErrorModal/ErrorModal";
+import SkillDetailsModal from "../SkillDetailsModal/SkillDetailsModal"; // Import the modal component
 import axios from "axios";
 import "./Skills.scss";
 import "../../App.scss";
@@ -12,19 +13,20 @@ const Skills = ({ showSidebar, active, closeSidebar }) => {
   const [errorModalOpen, setErrorModalOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [data, setData] = useState([]);
+  const [selectedSkill, setSelectedSkill] = useState(null); // State to track the selected skill
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control modal visibility
 
   useEffect(() => {
     fetchSkills();
   }, []);
 
- 
   const skillsData = [
-    { id: 1, icon: <FaCode /> },
-    { id: 2, icon: <FaServer />},
-    { id: 3, icon: <FaDatabase /> },
-    { id: 4, icon: <FaTools />},
-    { id: 5, icon: <FaReact /> },
-    { id: 6, icon: <FaSass /> },
+    { id: 1, icon: <FaCode />, percentage: 90 },
+    { id: 2, icon: <FaServer />, percentage: 85 },
+    { id: 3, icon: <FaDatabase />, percentage: 80 },
+    { id: 4, icon: <FaTools />, percentage: 75 },
+    { id: 5, icon: <FaReact />, percentage: 70 },
+    { id: 6, icon: <FaSass />, percentage: 95 },
   ];
 
   const fetchSkills = useCallback(async () => {
@@ -38,7 +40,8 @@ const Skills = ({ showSidebar, active, closeSidebar }) => {
         const mappedData = fetchedData.map(skill => {
       
           const icon = skillsData.find(s => s.id === skill.id)?.icon || null;
-          return { ...skill, icon };
+          const percentage = skillsData.find(s => s.id === skill.id)?.percentage || 0;
+          return { ...skill, icon, percentage };
         });
         setData(mappedData);
       }
@@ -55,6 +58,16 @@ const Skills = ({ showSidebar, active, closeSidebar }) => {
     }
   }, []);
 
+  const handleSkillClick = (skill) => {
+    setSelectedSkill(skill);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedSkill(null);
+  };
+
   return (
     <div className="skills">
       <Sidebar active={active} closeSidebar={closeSidebar} />
@@ -69,7 +82,7 @@ const Skills = ({ showSidebar, active, closeSidebar }) => {
           <h2>My Skills</h2>
           <div className="skills_list">
             {data.map(skill => (
-              <div key={skill.id} className="skill_card">
+              <div key={skill.id} className="skill_card" onClick={() => handleSkillClick(skill)}>
                 <div className="skill_icon">{skill.icon}</div>
                 <h3>{skill.name}</h3>
                 <p>{skill.description}</p>
@@ -82,6 +95,13 @@ const Skills = ({ showSidebar, active, closeSidebar }) => {
             errorMessage={errorMessage}
             isOpen={errorModalOpen}
             onClose={() => setErrorModalOpen(false)}
+          />
+        )}
+        {selectedSkill && (
+          <SkillDetailsModal
+            skill={selectedSkill}
+            isOpen={isModalOpen}
+            onClose={closeModal}
           />
         )}
       </div>

@@ -1,0 +1,59 @@
+.skill-details-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+      position: relative;
+    }
+  
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+  
+    .bars {
+      margin-top: 20px;
+  
+      .info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+  
+      .line {
+        height: 5px;
+        width: 100%;
+        background: lightgrey;
+        position: relative;
+        border-radius: 5px;
+  
+        .progress {
+          height: 100%;
+          background: purple;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 0; 
+          transition: width 0.3s ease;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+  
